@@ -1,7 +1,7 @@
 # Steel Plates Fault Detection
 
 [![Python](https://img.shields.io/badge/Python-3.12%2B-blue?logo=python)](https://www.python.org/)
-[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3-orange?logo=scikit-learn)](https://scikit-learn.org/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.8-orange?logo=scikit-learn)](https://scikit-learn.org/)
 [![CatBoost](https://img.shields.io/badge/CatBoost-1.2-yellow)](https://catboost.ai/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 [![Dataset](https://img.shields.io/badge/Dataset-UCI%20Steel%20Plates%20Faults-lightgrey)](https://archive.ics.uci.edu/dataset/198/steel+plates+faults)
