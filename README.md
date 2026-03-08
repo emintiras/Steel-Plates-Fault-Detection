@@ -51,7 +51,7 @@ Class distribution, fault proportions pie chart, steel type breakdown (A300 vs A
 ![Dataset Overview](plots/01_dataset_overview.png)
 
 ### 2. Feature Distributions
-Per-class KDE plots for 12 continuous features, revealing which features carry class-discriminative signal.
+Per-class KDE plots for 13 continuous features, revealing which features carry class-discriminative signal.
 
 ![Feature Distributions](plots/02_feature_distributions.png)
 
@@ -110,22 +110,30 @@ Training vs. validation score curves for overfitting/underfitting diagnosis acro
 ```
 steel-plates-fault-detection/
 │
-├── main.py        
+├── main.py                       
+├── config.yaml                   
+├── requirements.txt
+│
+├── src/
+│   ├── __init__.py
+│   ├── config.py               
+│   ├── data.py                   
+│   ├── models.py             
+│   └── plots.py          
+│
 ├── data/
-│   └── steel_plates_faults.csv         
+│   └── steel_plates_faults.csv
 │
-├── plots/
-│   ├── 01_dataset_overview.png
-│   ├── 02_feature_distributions.png
-│   ├── 03_boxplots_per_class.png
-│   ├── 04_correlation_analysis.png
-│   ├── 05_dimensionality_reduction.png
-│   ├── 06_model_comparison.png
-│   ├── 07_feature_importance.png
-│   ├── 08_per_class_metrics.png
-│   └── 09_learning_curves.png
-│
-└── README.md
+└── plots/
+    ├── 01_dataset_overview.png
+    ├── 02_feature_distributions.png
+    ├── 03_boxplots_per_class.png
+    ├── 04_correlation_analysis.png
+    ├── 05_dimensionality_reduction.png
+    ├── 06_model_comparison.png
+    ├── 07_feature_importance.png
+    ├── 08_per_class_metrics.png
+    └── 09_learning_curves.png
 ```
 
 ---
@@ -140,19 +148,23 @@ cd Steel-Plates-Fault-Detection
 # Install dependencies
 pip install -r requirements.txt
 
-# Run the full analysis
+# Run the full pipeline (EDA + training + all plots)
 python main.py
+
+# EDA only — class distributions, KDE, boxplots, PCA/t-SNE
+python main.py --mode eda
+
+# Training only — skip slow dimensionality reduction plots
+python main.py --mode train
+
+# Skip t-SNE (faster iteration during development)
+python main.py --no-tsne
+
+# Use a custom config or output directory
+python main.py --config my_config.yaml --output-dir results/
 ```
 
-**Requirements (`requirements.txt`):**
-```
-numpy
-pandas
-matplotlib
-seaborn
-scikit-learn
-catboost
-```
+**All hyperparameters** (model settings, feature lists, plot DPI, colour palette) live in `config.yaml` — no need to touch any source file for tuning.
 
 ---
 

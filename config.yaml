@@ -1,0 +1,84 @@
+# Steel Plates Fault Detection — Configuration
+
+data:
+  path: "data/steel_plates_faults.csv"
+  index_col: 0
+  fault_cols:
+    - Pastry
+    - Z_Scratch
+    - K_Scatch
+    - Stains
+    - Dirtiness
+    - Bumps
+    - Other_Faults
+  test_size: 0.2
+  random_state: 42
+
+features:
+  # UCI Variables Table — officially Continuous typed features (for KDE plots)
+  continuous_features:
+    - Edges_Index
+    - Empty_Index
+    - Square_Index
+    - Outside_X_Index
+    - Edges_X_Index
+    - Edges_Y_Index
+    - Outside_Global_Index
+    - LogOfAreas
+    - Log_X_Index
+    - Log_Y_Index
+    - Orientation_Index
+    - Luminosity_Index
+    - SigmoidOfAreas
+  # Features used for boxplot visualisation
+  boxplot_features:
+    - Pixels_Areas
+    - LogOfAreas
+    - Luminosity_Index
+    - Edges_Index
+    - Empty_Index
+    - Square_Index
+    - Orientation_Index
+    - SigmoidOfAreas
+
+models:
+  random_forest:
+    n_estimators: 200
+    random_state: 42
+    n_jobs: -1
+  gradient_boosting:
+    n_estimators: 150
+    random_state: 42
+  logistic_regression:
+    max_iter: 1000
+    random_state: 42
+  catboost:
+    iterations: 300
+    learning_rate: 0.05
+    depth: 6
+    random_seed: 42
+    verbose: 0
+    loss_function: MultiClass
+    eval_metric: Accuracy
+  cv_folds: 5
+  permutation_repeats: 10
+
+output:
+  plot_dir: "plots"
+  results_file: "model_results.json"
+  plot_dpi: 150
+
+style:
+  dark_bg:  "#0d1117"
+  card_bg:  "#161b22"
+  text_col: "#e6edf3"
+  grid_col: "#21262d"
+  accent:   "#58a6ff"
+  palette:
+    - "#2196F3"
+    - "#4CAF50"
+    - "#FF5722"
+    - "#9C27B0"
+    - "#FF9800"
+    - "#00BCD4"
+    - "#E91E63"
